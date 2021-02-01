@@ -34,15 +34,15 @@ Brave_Browser Discord Etcher GIMP Github_Desktop Htop Inkscape JRE Kodi Neofetch
 ### Essential Programs (DEB Packages)
 
 ```bash
-sudo apt install software-properties-common apt-transport-https ca-certificates wget curl gnupg git && \
-sudo add-apt-repository ppa:videolan/stable-daily && \
-sudo add-apt-repository ppa:team-xbmc/ppa && \
-sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable && \
+sudo apt install -y software-properties-common apt-transport-https ca-certificates wget curl gnupg git && \
+sudo add-apt-repository -y ppa:videolan/stable-daily && \
+sudo add-apt-repository -y ppa:team-xbmc/ppa && \
+sudo add-apt-repository -y ppa:qbittorrent-team/qbittorrent-stable && \
 wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add - && \
-sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" && \
+sudo add-apt-repository -y "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" && \
 wget -qO - https://typora.io/linux/public-key.asc | sudo apt-key add - && \
-sudo add-apt-repository 'deb https://typora.io/linux ./' && \
-sudo add-apt-repository ppa:oguzhaninan/stacer -y && \
+sudo add-apt-repository -y 'deb https://typora.io/linux ./' && \
+sudo add-apt-repository -y ppa:oguzhaninan/stacer && \
 curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add - && \
 echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list && \
 wget -qO - https://packagecloud.io/shiftkey/desktop/gpgkey | sudo tee /etc/apt/trusted.gpg.d/shiftkey-desktop.asc > /dev/null && \
@@ -89,8 +89,8 @@ pip3 install wheel flask numpy pymongo selenium opencv-python bs4 matplotlib sci
 ### GNOME Tweaks and Extensions ⚡️
 
 ```bash
-sudo add-apt-repository universe && \
-sudo add-apt-repository ppa:afelinczak/ppa && \
+sudo add-apt-repository -y universe && \
+sudo add-apt-repository -y ppa:afelinczak/ppa && \
 sudo apt update && \
 sudo apt install -y gnome-tweak-tool && \
 sudo apt install -y gnome-shell-extension-gsconnect gnome-shell-extension-docker gnome-shell-screenshot clipit
