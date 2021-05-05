@@ -48,7 +48,7 @@ sudo apt update && sudo apt upgrade -y
 ## Installing Essential Programs 💯
 List of Programs: 
 ```
-Brave_Browser Discord Etcher GIMP Github_Desktop Htop Huluti Inkscape JRE Kodi Lutris_(+Wine_and_Dependencies) MongoDB_Compass Neofetch Nextcloud_Client Onlyoffice PeaZip_GUI PIP3 qbittorrent screen Signal Stacer Telegram Tilix Typora Virtualbox VLC VSCode Zoom_Client
+Brave_Browser Discord Etcher GIMP Github_Desktop Htop Huluti Inkscape JRE Kodi Lutris_(+Wine_and_Dependencies) MongoDB_Compass Neofetch Nextcloud_Client Onlyoffice PeaZip_GUI PIP3 qbittorrent screen Signal Telegram Tilix Typora Virtualbox VLC VSCode Zoom_Client
 ```
 
 ### Essential Programs (DEB Packages)
@@ -61,23 +61,22 @@ wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add
 sudo add-apt-repository -y "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" && \
 wget -qO - https://typora.io/linux/public-key.asc | sudo apt-key add - && \
 sudo add-apt-repository -y 'deb https://typora.io/linux ./' && \
-sudo add-apt-repository -y ppa:oguzhaninan/stacer && \
 curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add - && \
 echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list && \
 wget -qO - https://packagecloud.io/shiftkey/desktop/gpgkey | sudo tee /etc/apt/trusted.gpg.d/shiftkey-desktop.asc > /dev/null && \
 sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/shiftkey/desktop/any/ any main" > /etc/apt/sources.list.d/packagecloud-shiftky-desktop.list' && \
-echo "deb https://deb.etcher.io stable etcher" | sudo tee /etc/apt/sources.list.d/balena-etcher.list && \
+curl -1sLf 'https://dl.cloudsmith.io/public/balena/etcher/setup.deb.sh' | sudo -E bash && \
 sudo apt-key adv --keyserver hkps://keyserver.ubuntu.com:443 --recv-keys 379CE192D401AB61 && \
 wget -c https://github.com/peazip/PeaZip/releases/download/7.7.0/peazip_7.7.0.LINUX.x86_64.GTK2.deb && \
 wget https://zoom.us/client/latest/zoom_amd64.deb && \
 wget https://dl.discordapp.net/apps/linux/0.0.13/discord-0.0.13.deb && \
-wget https://downloads.mongodb.com/compass/mongodb-compass_1.25.0_amd64.deb && \
+wget https://downloads.mongodb.com/compass/mongodb-compass_1.26.1_amd64.deb && \
 sudo apt update && \
-sudo dpkg -i mongodb-compass_1.25.0_amd64.deb && \
+sudo apt install -y tilix htop neofetch screen vlc kodi code typora brave-browser github-desktop python3-pip balena-etcher-electron qbittorrent virtualbox lutris default-jre && \
 sudo apt install -y ./zoom_amd64.deb && \
 sudo apt install -y ./peazip_7.7.0.LINUX.x86_64.GTK2.deb && \
 sudo apt install -y ./discord-0.0.13.deb && \
-sudo apt install -y tilix htop neofetch screen vlc kodi code typora stacer brave-browser github-desktop python3-pip balena-etcher-electron qbittorrent virtualbox lutris default-jre && \
+sudo dpkg -i mongodb-compass_1.26.1_amd64.deb && \
 sudo apt upgrade -y && \
 sudo rm *.deb && sudo apt autoremove
 ```
@@ -92,12 +91,12 @@ sudo apt install -y virtualbox-ext-pack
 
 ```bash
 mkdir AppImages && \
-flatpak install --assumeyes --noninteractive https://flathub.org/repo/appstream/org.gimp.GIMP.flatpakref && \
+flatpak install --assumeyes --noninteractive --system https://flathub.org/repo/appstream/org.gimp.GIMP.flatpakref && \
+flatpak install --assumeyes --noninteractive --system flathub com.github.huluti.Curtail && \
+flatpak install --assumeyes --noninteractive --system flathub org.onlyoffice.desktopeditors && \
 flatpak install --assumeyes --noninteractive --system flathub org.inkscape.Inkscape && \
 flatpak install --assumeyes --noninteractive --system flathub org.signal.Signal && \
 flatpak install --assumeyes --noninteractive --system flathub org.telegram.desktop && \
-flatpak install --assumeyes --noninteractive --system flathub com.github.huluti.Curtail && \
-flatpak install --assumeyes --noninteractive --system flathub org.onlyoffice.desktopeditors && \
 wget -O "AppImages/Nextcloud.AppImage" https://github.com/nextcloud/desktop/releases/download/v3.1.2/Nextcloud-3.1.2-x86_64.AppImage
 ```
 
@@ -108,13 +107,21 @@ sudo apt update && \
 sudo apt install -y libopencv-dev python3-opencv && \
 pip3 install wheel flask numpy pymongo selenium opencv-python bs4 matplotlib scikit-learn Pillow pandas requests nltk bokeh pytest
 ```
+### [Patch for GIMP 2.10+ for Photoshop Users](https://github.com/Diolinux/PhotoGIMP)
+```
+# GIMP must installed as a Flatpak before this
+wget https://github.com/Diolinux/PhotoGIMP/releases/download/1.0/PhotoGIMP.by.Diolinux.v2020.for.Flatpak.zip && \
+unzip PhotoGIMP.by.Diolinux.v2020.for.Flatpak.zip -d /home/$USER  && \ 
+rm -r PhotoGIMP.by.Diolinux.v2020.for.Flatpak.zip
+```
 
 ### [Photoshop CC v19 installer for Linux](https://github.com/Gictorbit/photoshopCClinux):wine_glass:
 ```
+sudo apt install -y wine wine64 winetricks mono-complete && \
 git clone -q https://github.com/Gictorbit/photoshopCClinux.git && \
-cd photoshopCClinux && \
-chmod +x setup.sh && \
-./setup.sh
+cd photoshopCClinux/scripts && \
+chmod +x PhotoshopSetup.sh  && \
+./PhotoshopSetup.sh 
 ```
 
 ### GNOME Tweaks and Extensions ⚡️
