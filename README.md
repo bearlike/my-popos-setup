@@ -21,7 +21,7 @@ I forget a lot of stuff. Plus I should stop flushing my PC after every minor inc
 
 ### Change Appearance to my Liking :sunflower: 
 [Wallpaper](https://thekrishna.in/my-popos-setup/configs/wallpaper/Abstract-Wallpaper.jpg), Cursor ([**We10XOS-cursors**](https://github.com/yeyushengfan258/We10XOS-cursors)), Icons ([**Papirus**](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)) etc.
-```
+```bash
 echo "Changing Wallapaper..." && \
 mkdir /home/${USER}/Pictures/Wallpapers && \
 wget -q -P /home/${USER}/Pictures/Wallpapers https://thekrishna.in/my-popos-setup/configs/wallpaper/Abstract-Wallpaper.jpg && \
@@ -59,6 +59,8 @@ sudo add-apt-repository -y ppa:team-xbmc/ppa && \
 sudo add-apt-repository -y ppa:qbittorrent-team/qbittorrent-stable && \
 wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add - && \
 sudo add-apt-repository -y "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" && \
+wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -  && \
+sudo add-apt-repository -y "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian focal contrib" && \
 wget -qO - https://typora.io/linux/public-key.asc | sudo apt-key add - && \
 sudo add-apt-repository -y 'deb https://typora.io/linux ./' && \
 curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add - && \
@@ -107,8 +109,8 @@ sudo apt update && \
 sudo apt install -y libopencv-dev python3-opencv && \
 pip3 install wheel flask numpy pymongo selenium opencv-python bs4 matplotlib scikit-learn Pillow pandas requests nltk bokeh pytest
 ```
-### [Patch for GIMP 2.10+ for Photoshop Users](https://github.com/Diolinux/PhotoGIMP)
-```
+### [Patch for GIMP 2.10+ for Photoshop Users](https://github.com/Diolinux/PhotoGIMP) :art:
+```bash
 # GIMP must installed as a Flatpak before this
 wget https://github.com/Diolinux/PhotoGIMP/releases/download/1.0/PhotoGIMP.by.Diolinux.v2020.for.Flatpak.zip && \
 unzip PhotoGIMP.by.Diolinux.v2020.for.Flatpak.zip -d /home/$USER  && \ 
@@ -116,7 +118,7 @@ rm -r PhotoGIMP.by.Diolinux.v2020.for.Flatpak.zip
 ```
 
 ### [Photoshop CC v19 installer for Linux](https://github.com/Gictorbit/photoshopCClinux):wine_glass:
-```
+```bash
 sudo apt install -y wine wine64 winetricks mono-complete && \
 git clone -q https://github.com/Gictorbit/photoshopCClinux.git && \
 cd photoshopCClinux/scripts && \
