@@ -74,7 +74,7 @@ wget https://zoom.us/client/latest/zoom_amd64.deb && \
 wget https://dl.discordapp.net/apps/linux/0.0.13/discord-0.0.13.deb && \
 wget https://downloads.mongodb.com/compass/mongodb-compass_1.26.1_amd64.deb && \
 sudo apt update && \
-sudo apt install -y tilix htop neofetch screen vlc kodi code typora brave-browser github-desktop python3-pip balena-etcher-electron qbittorrent virtualbox lutris default-jre && \
+sudo apt install -y net-tools tilix htop neofetch screen vlc kodi code typora brave-browser github-desktop python3-pip balena-etcher-electron qbittorrent virtualbox lutris default-jre && \
 sudo apt install -y ./zoom_amd64.deb && \
 sudo apt install -y ./peazip_7.7.0.LINUX.x86_64.GTK2.deb && \
 sudo apt install -y ./discord-0.0.13.deb && \
