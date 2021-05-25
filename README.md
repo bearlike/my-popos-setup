@@ -54,6 +54,7 @@ Brave_Browser Discord Etcher GIMP Github_Desktop Htop Huluti Inkscape JRE Kodi L
 ### Essential Programs (DEB Packages)
 
 ```bash
+sudo apt update && \
 sudo apt install -y -qq software-properties-common apt-transport-https ca-certificates wget curl gnupg git && \
 sudo add-apt-repository -y ppa:team-xbmc/ppa && \
 sudo add-apt-repository -y ppa:qbittorrent-team/qbittorrent-stable && \
@@ -88,9 +89,16 @@ sudo rm *.deb && sudo apt autoremove
 sudo apt install -y virtualbox-ext-pack
 ```
 
+### Installing KVM + related tools (KVM >>> VirtualBox) ⚡️
+[VirtIO drivers for Windows Guest Machines](https://github.com/virtio-win/virtio-win-pkg-scripts/blob/master/README.md)
+```bash
+sudo apt -y install qemu-kvm libvirt-bin bridge-utils virt-manager libvirt-daemon-system libvirt-clients qemu virt-viewer spice-vdagent && \
+sudo adduser ${USER} libvirt && \
+sudo adduser ${USER} kvm
+```
+
 
 ### Installing Essential Programs (AppImages and Flatpaks) ❤️
-
 ```bash
 mkdir AppImages && \
 flatpak install --assumeyes --noninteractive --system https://flathub.org/repo/appstream/org.gimp.GIMP.flatpakref && \
@@ -103,12 +111,12 @@ wget -O "AppImages/Nextcloud.AppImage" https://github.com/nextcloud/desktop/rele
 ```
 
 ### Essential Python3 Packages 🐍
-
 ```bash
 sudo apt update && \
 sudo apt install -y libopencv-dev python3-opencv && \
 pip3 install wheel flask numpy pymongo selenium opencv-python bs4 matplotlib scikit-learn Pillow pandas requests nltk bokeh pytest
 ```
+
 ### [Patch for GIMP 2.10+ for Photoshop Users](https://github.com/Diolinux/PhotoGIMP) :art:
 ```bash
 # GIMP must installed as a Flatpak before this
@@ -127,7 +135,6 @@ chmod +x PhotoshopSetup.sh  && \
 ```
 
 ### GNOME Tweaks and Extensions ⚡️
-
 ```bash
 sudo add-apt-repository -y universe && \
 sudo add-apt-repository -y ppa:afelinczak/ppa && \
