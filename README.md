@@ -89,6 +89,12 @@ sudo rm *.deb && sudo apt autoremove
 sudo apt install -y virtualbox-ext-pack
 ```
 
+### Install and Configure Powerline
+```bash
+sudo apt install -y powerline fonts-powerline && \
+echo -e "\nif [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then \n   powerline-daemon -q\n   POWERLINE_BASH_CONTINUATION=1\n   POWERLINE_BASH_SELECT=1\n   source /usr/share/powerline/bindings/bash/powerline.sh\n fi\n" >> $HOME/.bashrc && \
+```
+
 ### Installing KVM + related tools (KVM >>> VirtualBox) ⚡️
 [VirtIO drivers for Windows Guest Machines](https://github.com/virtio-win/virtio-win-pkg-scripts/blob/master/README.md)
 ```bash
