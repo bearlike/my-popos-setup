@@ -89,16 +89,27 @@ sudo rm *.deb && sudo apt autoremove
 sudo apt install -y virtualbox-ext-pack
 ```
 
-### Installing [Powerline for Bash](https://github.com/powerline/powerline) and [Powerlevel10k for Zsh](https://github.com/romkatv/powerlevel10k) 
+### Installing [Powerline for Bash](https://github.com/powerline/powerline) 
 ```bash
 sudo apt install -y powerline fonts-powerline fonts-font-awesome zsh && \
-echo -e "\nif [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then \n   powerline-daemon -q\n   POWERLINE_BASH_CONTINUATION=1\n   POWERLINE_BASH_SELECT=1\n   source /usr/share/powerline/bindings/bash/powerline.sh\n fi\n" >> $HOME/.bashrc && \
-sudo wget -O "/usr/local/share/fonts/MesloLGS NF Regular.ttf" https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf && \
-git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ~/powerlevel10k
+echo -e "\nif [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then \n   powerline-daemon -q\n   POWERLINE_BASH_CONTINUATION=1\n   POWERLINE_BASH_SELECT=1\n   source /usr/share/powerline/bindings/bash/powerline.sh\n fi\n" >> $HOME/.bashrc
+```
+
+### Installing Zsh and some plugins
+[Powerlevel10k for Zsh](https://github.com/romkatv/powerlevel10k), [Znap](https://github.com/marlonrichert/zsh-snap), 
+```bash
+sudo apt install -y zsh && \
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" && \
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 ```
 ```bash
-# After Configuring Zsh, run the following command to install Powerlevel10k
-echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >> ~/.zshrc
+git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git && \
+source zsh-snap/install.zsh && \
+echo -e "znap source marlonrichert/zsh-autocomplete" >> ~/.zshrc
+```
+```bash
+# Change default shell to Zsh
+chsh -s $(which zsh)
 ```
 
 ### Installing KVM + related tools (KVM >>> VirtualBox) ⚡️
