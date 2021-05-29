@@ -89,10 +89,16 @@ sudo rm *.deb && sudo apt autoremove
 sudo apt install -y virtualbox-ext-pack
 ```
 
-### Install and Configure Powerline
+### Installing [Powerline for Bash](https://github.com/powerline/powerline) and [Powerlevel10k for Zsh](https://github.com/romkatv/powerlevel10k) 
 ```bash
-sudo apt install -y powerline fonts-powerline && \
+sudo apt install -y powerline fonts-powerline fonts-font-awesome zsh && \
 echo -e "\nif [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then \n   powerline-daemon -q\n   POWERLINE_BASH_CONTINUATION=1\n   POWERLINE_BASH_SELECT=1\n   source /usr/share/powerline/bindings/bash/powerline.sh\n fi\n" >> $HOME/.bashrc && \
+sudo wget -O "/usr/local/share/fonts/MesloLGS NF Regular.ttf" https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf && \
+git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ~/powerlevel10k
+```
+```bash
+# After Configuring Zsh, run the following command to install Powerlevel10k
+echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >> ~/.zshrc
 ```
 
 ### Installing KVM + related tools (KVM >>> VirtualBox) ⚡️
@@ -152,7 +158,6 @@ sudo apt install -y gnome-shell-extension-gsconnect clipit
 ----
 
 ## Installing Docker and Deploying Containers 🐳
-
 ```bash
 sudo apt update && \
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && \
