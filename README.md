@@ -75,7 +75,7 @@ wget https://zoom.us/client/latest/zoom_amd64.deb && \
 wget https://dl.discordapp.net/apps/linux/0.0.13/discord-0.0.13.deb && \
 wget https://downloads.mongodb.com/compass/mongodb-compass_1.26.1_amd64.deb && \
 sudo apt update && \
-sudo apt install -y net-tools tilix htop neofetch screen vlc kodi code typora brave-browser github-desktop python3-pip balena-etcher-electron qbittorrent virtualbox lutris default-jre && \
+sudo apt install -y git curl net-tools tilix htop neofetch screen vlc kodi code typora brave-browser github-desktop python3-pip balena-etcher-electron qbittorrent virtualbox lutris default-jre && \
 sudo apt install -y ./zoom_amd64.deb && \
 sudo apt install -y ./peazip_7.7.0.LINUX.x86_64.GTK2.deb && \
 sudo apt install -y ./discord-0.0.13.deb && \
@@ -96,26 +96,30 @@ echo -e "\nif [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then \n   
 ```
 
 ### Installing Zsh and some plugins
-[Powerlevel10k for Zsh](https://github.com/romkatv/powerlevel10k), [Znap](https://github.com/marlonrichert/zsh-snap), 
+[Powerlevel10k for Zsh](https://github.com/romkatv/powerlevel10k), [Znap](https://github.com/marlonrichert/zsh-snap), [zsh-autocomplete](https://github.com/marlonrichert/zsh-autocomplete)
 ```bash
+# Powerlevel10k configuration wizard will require manual intervention
 sudo apt install -y zsh && \
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" && \
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k && \
+sed -i 's/robbyrussell/powerlevel10k\/powerlevel10k/' ~/.zshrc
 ```
 ```bash
 git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git && \
 source zsh-snap/install.zsh && \
 echo -e "znap source marlonrichert/zsh-autocomplete" >> ~/.zshrc
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+echo -e "\033[0;32m'Add 'zsh-autosuggestions' to Plugins in ~/.zshrc\033[0m"
 ```
 ```bash
-# Change default shell to Zsh
+# Change default shell to Zsh (If necessary)
 chsh -s $(which zsh)
 ```
 
 ### Installing KVM + related tools (KVM >>> VirtualBox) ⚡️
 [VirtIO drivers for Windows Guest Machines](https://github.com/virtio-win/virtio-win-pkg-scripts/blob/master/README.md)
 ```bash
-sudo apt -y install qemu-kvm libvirt-bin bridge-utils virt-manager libvirt-daemon-system libvirt-clients qemu virt-viewer spice-vdagent && \
+sudo apt -y install qemu-kvm bridge-utils virt-manager libvirt-daemon-system libvirt-clients qemu virt-viewer spice-vdagent && \
 sudo adduser ${USER} libvirt && \
 sudo adduser ${USER} kvm
 ```
