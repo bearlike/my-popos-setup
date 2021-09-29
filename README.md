@@ -88,7 +88,7 @@ sudo apt install -y virtualbox-ext-pack
 
 ### Installing [Powerline for Bash](https://github.com/powerline/powerline) 
 ```bash
-sudo apt install -y powerline fonts-powerline fonts-font-awesome zsh && \
+sudo apt install -y powerline fonts-powerline fonts-font-awesome && \
 echo -e "\nif [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then \n   powerline-daemon -q\n   POWERLINE_BASH_CONTINUATION=1\n   POWERLINE_BASH_SELECT=1\n   source /usr/share/powerline/bindings/bash/powerline.sh\n fi\n" >> $HOME/.bashrc
 ```
 
