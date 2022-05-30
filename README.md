@@ -1,6 +1,6 @@
-# Pop!_OS 20.04 LTS: Personal Setup 🤙
+# Pop!_OS 22.04 LTS: Personal Setup 🤙
 
-I forget a lot of stuff. Plus I should stop flushing my PC after every minor inconvenience. So I made this list of scripts and configurations
+I forget a lot of stuff. Plus I should stop flushing my PC after every minor inconvenience. So I made this list of scripts and configurations. Also applies to Ubuntu 22.04 LTS.
 
 **🚫👿 I hate Snaps.** They are slow to install, slow to start, take too much RAM, too much disk space and they auto-update themselves without asking, taking up bandwidth. I would try to avoid snaps as much as possible.  
 
@@ -45,10 +45,6 @@ sudo apt update && sudo apt upgrade -y
 ```
 
 ## Installing Essential Programs 💯
-List of Programs: 
-```
-Discord Etcher GIMP Github_Desktop Htop Huluti Inkscape JRE Kodi Lutris_(+Wine_and_Dependencies) MongoDB_Compass Neofetch Nextcloud_Client Onlyoffice PeaZip_GUI PIP3 qbittorrent screen Signal Telegram Tilix Tmux Typora Virtualbox Vivaldi VLC VSCode Zoom_Client
-```
 
 ### Essential Programs (DEB Packages)
 ```bash
@@ -56,33 +52,30 @@ cd ~ && sudo apt update && \
 sudo apt install -y -qq software-properties-common apt-transport-https ca-certificates wget curl gnupg git && \
 sudo wget -qO - https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add - && \
 sudo wget -qO - https://www.virtualbox.org/download/oracle_vbox_2016.asc | sudo apt-key add - && \
-sudo wget -qO - https://typora.io/linux/public-key.asc | sudo apt-key add - && \
-sudo wget -qO - https://packagecloud.io/shiftkey/desktop/gpgkey | sudo tee /etc/apt/trusted.gpg.d/shiftkey-desktop.asc && \
+sudo wget -qO - https://www.virtualbox.org/download/oracle_vbox.asc | sudo apt-key add - && \
 sudo wget -qO - http://repo.vivaldi.com/stable/linux_signing_key.pub | sudo apt-key add - && \
 sudo add-apt-repository -y "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" && \
-sudo add-apt-repository -y "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian focal contrib" && \
+sudo add-apt-repository -y "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian jammy contrib" && \
 sudo add-apt-repository -y "deb [arch=amd64] http://repo.vivaldi.com/stable/deb/ stable main" && \
 sudo add-apt-repository -y ppa:team-xbmc/ppa && \
 sudo add-apt-repository -y ppa:lutris-team/lutris && \
 sudo add-apt-repository -y ppa:qbittorrent-team/qbittorrent-stable && \
-sudo add-apt-repository -y 'deb https://typora.io/linux ./' && \
-sudo apt-key adv --keyserver hkps://keyserver.ubuntu.com:443 --recv-keys 379CE192D401AB61 && \
-sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/shiftkey/desktop/any/ any main" > /etc/apt/sources.list.d/packagecloud-shiftky-desktop.list' && \
 sudo curl -1sLf 'https://dl.cloudsmith.io/public/balena/etcher/setup.deb.sh' | sudo -E bash
 ```
 ```bash
 cd ~ && sudo apt update && \
 wget -c https://github.com/peazip/PeaZip/releases/download/7.7.0/peazip_7.7.0.LINUX.x86_64.GTK2.deb && \
 wget https://zoom.us/client/latest/zoom_amd64.deb && \
-wget https://dl.discordapp.net/apps/linux/0.0.13/discord-0.0.13.deb && \
+wget https://dl.discordapp.net/apps/linux/0.0.17/discord-0.0.17.deb && \
 wget https://downloads.mongodb.com/compass/mongodb-compass_1.26.1_amd64.deb && \
-sudo apt install -y net-tools tilix tmux htop neofetch screen vlc kodi code typora vivaldi-stable python-is-python3 github-desktop python3-pip balena-etcher-electron qbittorrent virtualbox lutris default-jre && \
-sudo apt install -y ./zoom_amd64.deb ./peazip_7.7.0.LINUX.x86_64.GTK2.deb ./peazip_7.7.0.LINUX.x86_64.GTK2.deb ./discord-0.0.13.deb ./mongodb-compass_1.26.1_amd64.deb && \
+sudo apt install -y net-tools tilix mc tmux htop neofetch screen vlc kodi code vivaldi-stable python-is-python3 python3-pip balena-etcher-electron qbittorrent lutris default-jre && \
+sudo apt install -y ./zoom_amd64.deb ./peazip_7.7.0.LINUX.x86_64.GTK2.deb ./discord-0.0.17.deb ./mongodb-compass_1.26.1_amd64.deb && \
 sudo apt upgrade -y && \
 sudo rm *.deb && sudo apt autoremove
 ```
 ```bash
 # Requires Console Intervention to Accept T&C
+sudo apt install -y virtualbox
 sudo apt install -y virtualbox-ext-pack
 ```
 
@@ -109,7 +102,7 @@ source zsh-snap/install.zsh
 ```bash
 echo -e "znap source marlonrichert/zsh-autocomplete" >> ~/.zshrc
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 echo -e "\033[0;32m'Add 'zsh-autosuggestions' to Plugins in ~/.zshrc\033[0m"
 ```
 ```bash
@@ -130,10 +123,8 @@ sudo adduser ${USER} kvm
 ```bash
 mkdir ~/.AppImages && \
 flatpak install --assumeyes --noninteractive --system https://flathub.org/repo/appstream/org.gimp.GIMP.flatpakref && \
-flatpak install --assumeyes --noninteractive --system flathub com.github.huluti.Curtail && \
 flatpak install --assumeyes --noninteractive --system flathub org.onlyoffice.desktopeditors && \
 flatpak install --assumeyes --noninteractive --system flathub org.inkscape.Inkscape && \
-flatpak install --assumeyes --noninteractive --system flathub org.signal.Signal && \
 flatpak install --assumeyes --noninteractive --system flathub org.telegram.desktop && \
 wget -O "~/.AppImages/Nextcloud.AppImage" https://github.com/nextcloud/desktop/releases/download/v3.1.2/Nextcloud-3.1.2-x86_64.AppImage
 ```
@@ -165,9 +156,8 @@ chmod +x PhotoshopSetup.sh  && \
 ### GNOME Tweaks and Extensions ⚡️
 ```bash
 sudo add-apt-repository -y universe && \
-sudo add-apt-repository -y ppa:afelinczak/ppa && \
 sudo apt update && \
-sudo apt install -y gnome-tweak-tool && \
+sudo apt install -y gnome-tools && \
 sudo apt install -y gnome-shell-extension-gsconnect clipit
 ```
 
@@ -175,12 +165,12 @@ sudo apt install -y gnome-shell-extension-gsconnect clipit
 
 ## Installing Docker and Deploying Containers 🐳
 ```bash
-sudo apt update && \
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && \
-sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable" && \
-sudo apt update && \
-sudo apt install docker-ce && \
-sudo usermod -aG docker ${USER} && \
+sudo apt update
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt update
+sudo apt install docker-ce
+sudo usermod -aG docker ${USER}
 su - ${USER}
 ```
 
@@ -199,7 +189,9 @@ docker run --name mysql -e MYSQL_ROOT_PASSWORD="0000" -p 3306:3306 -d mysql && \
 docker run --name phpmyadmin -d --link mysql:db -p 8080:80 phpmyadmin/phpmyadmin
 ```
 
+## Configurations
+1. Use [bearlike/dotfiles](https://github.com/bearlike/dotfiles) to (re)configure machines. `.zshrc`, `.bashrc` etc.
+2. Clone [bearlike/scripts](https://github.com/bearlike/scripts) for your collection of automation scripts. 
 
 ## Yesssss! 👊❤️
-
 "Have fun using your completely configured system, future me." - Old you.
