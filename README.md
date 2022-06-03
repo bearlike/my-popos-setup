@@ -46,7 +46,7 @@ sudo apt update && sudo apt upgrade -y
 
 ## Installing Essential Programs 💯
 
-### Essential Programs (DEB Packages)
+### Super Essential Programs
 ```bash
 cd ~ && sudo apt update && \
 sudo apt install -y -qq software-properties-common apt-transport-https ca-certificates wget curl gnupg git && \
@@ -56,13 +56,11 @@ sudo add-apt-repository -y "deb [arch=amd64] https://packages.microsoft.com/repo
 sudo add-apt-repository -y "deb [arch=amd64] http://repo.vivaldi.com/stable/deb/ stable main"
 ```
 ```bash
-sudo apt install -y flatpak net-tools tilix mc tmux htop neofetch screen remmina grub-customizer vlc code vivaldi-stable python-is-python3 python3-pip 
+sudo apt install -y flatpak net-tools tilix mc tmux htop neofetch screen remmina grub-customizer vlc code vivaldi-stable 
 ```
+### Essential Programs
 ```bash
 cd ~ && sudo apt update && \
-sudo wget -qO - https://www.virtualbox.org/download/oracle_vbox_2016.asc | sudo apt-key add - && \
-sudo wget -qO - https://www.virtualbox.org/download/oracle_vbox.asc | sudo apt-key add - && \
-sudo add-apt-repository -y "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian jammy contrib" && \
 sudo add-apt-repository -y ppa:team-xbmc/ppa && \
 sudo add-apt-repository -y ppa:lutris-team/lutris && \
 sudo add-apt-repository -y ppa:qbittorrent-team/qbittorrent-stable && \
@@ -71,6 +69,8 @@ sudo curl -1sLf 'https://dl.cloudsmith.io/public/balena/etcher/setup.deb.sh' | s
 ```bash
 sudo apt install -y kodi balena-etcher-electron qbittorrent lutris default-jre
 ```
+
+`APT` will upgrade the standalone Debian packages, if possible.
 ```bash
 cd ~ && sudo apt update && \
 wget -c https://github.com/peazip/PeaZip/releases/download/8.6.0/peazip_8.6.0.LINUX.GTK2-1_amd64.deb && \
@@ -82,17 +82,32 @@ sudo apt install -y ./zoom_amd64.deb ./peazip_8.6.0.LINUX.GTK2-1_amd64.deb ./dis
 sudo apt upgrade -y && \
 sudo rm *.deb && sudo apt autoremove
 ```
+
+### Essential Python3 Packages 🐍
+`python3` is usually shipped with Ubuntu 20.04 and other versions of Debian Linux. 
+```bash
+sudo apt update && \
+sudo apt install -y python3 python-is-python3 python3-pip libopencv-dev python3-opencv && \
+pip3 install wheel flask numpy pymongo selenium opencv-python bs4 matplotlib scikit-learn Pillow pandas requests nltk bokeh pytest
+```
+
+### Installing Go :triangular_flag_on_post:
+Always check for latest version once.
 ```bash
 cd ~ && \ 
-curl -OL https://golang.org/dl/go1.16.7.linux-amd64.tar.gz && \ 
-sudo tar -C /usr/local -xvf go1.16.7.linux-amd64.tar.gz && \ 
+curl -OL https://golang.org/dl/go1.18.3.linux-amd64.tar.gz && \ 
+sudo tar -C /usr/local -xvf go1.18.3.linux-amd64.tar.gz && \ 
 echo "export PATH=\$PATH:/usr/local/go/bin" >> ~/.profile && \ 
 source ~/.profile
 ```
+### Installing Virtualbox
 ```bash
 # Requires Console Intervention to Accept T&C
-sudo apt install -y virtualbox
-sudo apt install -y virtualbox-ext-pack
+sudo wget -qO - https://www.virtualbox.org/download/oracle_vbox_2016.asc | sudo apt-key add - && \
+sudo wget -qO - https://www.virtualbox.org/download/oracle_vbox.asc | sudo apt-key add - && \
+sudo add-apt-repository -y "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian jammy contrib" && \
+sudo apt install -y virtualbox && \
+sudo apt install -y virtualbox-ext-pack 
 ```
 
 ### Install Microsoft TrueType Fonts :pencil2:
@@ -150,13 +165,6 @@ flatpak install --assumeyes --noninteractive --system flathub org.onlyoffice.des
 flatpak install --assumeyes --noninteractive --system flathub org.inkscape.Inkscape && \
 flatpak install --assumeyes --noninteractive --system flathub org.telegram.desktop && \
 wget -O "~/.AppImages/Nextcloud.AppImage" https://github.com/nextcloud/desktop/releases/download/v3.1.2/Nextcloud-3.1.2-x86_64.AppImage
-```
-
-### Essential Python3 Packages 🐍
-```bash
-sudo apt update && \
-sudo apt install -y libopencv-dev python3-opencv && \
-pip3 install wheel flask numpy pymongo selenium opencv-python bs4 matplotlib scikit-learn Pillow pandas requests nltk bokeh pytest
 ```
 
 ### [Patch for GIMP 2.10+ for Photoshop Users](https://github.com/Diolinux/PhotoGIMP) :art:
