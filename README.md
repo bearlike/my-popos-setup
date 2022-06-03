@@ -51,32 +51,55 @@ sudo apt update && sudo apt upgrade -y
 cd ~ && sudo apt update && \
 sudo apt install -y -qq software-properties-common apt-transport-https ca-certificates wget curl gnupg git && \
 sudo wget -qO - https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add - && \
-sudo wget -qO - https://www.virtualbox.org/download/oracle_vbox_2016.asc | sudo apt-key add - && \
-sudo wget -qO - https://www.virtualbox.org/download/oracle_vbox.asc | sudo apt-key add - && \
 sudo wget -qO - http://repo.vivaldi.com/stable/linux_signing_key.pub | sudo apt-key add - && \
 sudo add-apt-repository -y "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" && \
+sudo add-apt-repository -y "deb [arch=amd64] http://repo.vivaldi.com/stable/deb/ stable main"
+```
+```bash
+sudo apt install -y flatpak net-tools tilix mc tmux htop neofetch screen remmina grub-customizer vlc code vivaldi-stable python-is-python3 python3-pip 
+```
+```bash
+cd ~ && sudo apt update && \
+sudo wget -qO - https://www.virtualbox.org/download/oracle_vbox_2016.asc | sudo apt-key add - && \
+sudo wget -qO - https://www.virtualbox.org/download/oracle_vbox.asc | sudo apt-key add - && \
 sudo add-apt-repository -y "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian jammy contrib" && \
-sudo add-apt-repository -y "deb [arch=amd64] http://repo.vivaldi.com/stable/deb/ stable main" && \
 sudo add-apt-repository -y ppa:team-xbmc/ppa && \
 sudo add-apt-repository -y ppa:lutris-team/lutris && \
 sudo add-apt-repository -y ppa:qbittorrent-team/qbittorrent-stable && \
 sudo curl -1sLf 'https://dl.cloudsmith.io/public/balena/etcher/setup.deb.sh' | sudo -E bash
 ```
 ```bash
+sudo apt install -y kodi balena-etcher-electron qbittorrent lutris default-jre
+```
+```bash
 cd ~ && sudo apt update && \
-wget -c https://github.com/peazip/PeaZip/releases/download/7.7.0/peazip_7.7.0.LINUX.x86_64.GTK2.deb && \
+wget -c https://github.com/peazip/PeaZip/releases/download/8.6.0/peazip_8.6.0.LINUX.GTK2-1_amd64.deb && \
+wget -c https://github.com/shiftkey/desktop/releases/download/release-3.0.0-linux2/GitHubDesktop-linux-3.0.0-linux2.deb && \
 wget https://zoom.us/client/latest/zoom_amd64.deb && \
 wget https://dl.discordapp.net/apps/linux/0.0.17/discord-0.0.17.deb && \
 wget https://downloads.mongodb.com/compass/mongodb-compass_1.26.1_amd64.deb && \
-sudo apt install -y net-tools tilix mc tmux htop neofetch screen vlc kodi code vivaldi-stable python-is-python3 python3-pip balena-etcher-electron qbittorrent lutris default-jre && \
-sudo apt install -y ./zoom_amd64.deb ./peazip_7.7.0.LINUX.x86_64.GTK2.deb ./discord-0.0.17.deb ./mongodb-compass_1.26.1_amd64.deb && \
+sudo apt install -y ./zoom_amd64.deb ./peazip_8.6.0.LINUX.GTK2-1_amd64.deb ./discord-0.0.17.deb ./mongodb-compass_1.26.1_amd64.deb ./GitHubDesktop-linux-3.0.0-linux2.deb && \
 sudo apt upgrade -y && \
 sudo rm *.deb && sudo apt autoremove
+```
+```bash
+cd ~ && \ 
+curl -OL https://golang.org/dl/go1.16.7.linux-amd64.tar.gz && \ 
+sudo tar -C /usr/local -xvf go1.16.7.linux-amd64.tar.gz && \ 
+echo "export PATH=\$PATH:/usr/local/go/bin" >> ~/.profile && \ 
+source ~/.profile
 ```
 ```bash
 # Requires Console Intervention to Accept T&C
 sudo apt install -y virtualbox
 sudo apt install -y virtualbox-ext-pack
+```
+
+### Install Microsoft TrueType Fonts :pencil2:
+```bash
+sudo add-apt-repository multiverse && \
+sudo apt install ttf-mscorefonts-installer && \
+sudo fc-cache -f -v
 ```
 
 ### Installing [Powerline for Bash](https://github.com/powerline/powerline) 
@@ -141,7 +164,7 @@ pip3 install wheel flask numpy pymongo selenium opencv-python bs4 matplotlib sci
 # GIMP must installed as a Flatpak before this
 wget https://github.com/Diolinux/PhotoGIMP/releases/download/1.0/PhotoGIMP.by.Diolinux.v2020.for.Flatpak.zip && \
 unzip PhotoGIMP.by.Diolinux.v2020.for.Flatpak.zip -d /home/$USER  && \ 
-rm -r PhotoGIMP.by.Diolinux.v2020.for.Flatpak.zip
+rm -rf PhotoGIMP.by.Diolinux.v2020.for.Flatpak.zip
 ```
 
 ### [Photoshop CC v19 installer for Linux](https://github.com/Gictorbit/photoshopCClinux):wine_glass:
@@ -165,16 +188,16 @@ sudo apt install -y gnome-shell-extension-gsconnect clipit
 
 ## Installing Docker and Deploying Containers 🐳
 ```bash
-sudo apt update
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt update
-sudo apt install docker-ce
-sudo usermod -aG docker ${USER}
+sudo apt update && \
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg && \
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null && \
+sudo apt update && \
+sudo apt install docker-ce && \
+sudo usermod -aG docker ${USER} && \
 su - ${USER}
 ```
 
-### Deploying Essential Containers
+### Deploying Essential Containers :ship:
 [Portainer](https://hub.docker.com/r/portainer/portainer-ce), [MongoDB_Server](https://hub.docker.com/_/mongo), [MySQL_Server](https://hub.docker.com/_/mysql) + [PhpMyAdmin](https://hub.docker.com/_/phpmyadmin), [Grafana](https://hub.docker.com/r/grafana/grafana) 
 
 ```bash
@@ -191,7 +214,7 @@ docker run --name phpmyadmin -d --link mysql:db -p 8080:80 phpmyadmin/phpmyadmin
 
 ## Configurations
 1. Use [bearlike/dotfiles](https://github.com/bearlike/dotfiles) to (re)configure machines. `.zshrc`, `.bashrc` etc.
-2. Clone [bearlike/scripts](https://github.com/bearlike/scripts) for your collection of automation scripts. 
+2. Clone [bearlike/scripts](https://github.com/bearlike/scripts) for a collection of automation scripts. 
 
 ## Yesssss! 👊❤️
 "Have fun using your completely configured system, future me." - Old you.
