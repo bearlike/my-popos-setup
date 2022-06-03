@@ -63,7 +63,7 @@ sudo add-apt-repository -y "deb [arch=amd64] http://repo.vivaldi.com/stable/deb/
 sudo apt install -y flatpak net-tools tilix mc tmux htop neofetch screen remmina grub-customizer vlc code vivaldi-stable 
 ```
 
-### Essential Programs :arrow_double_down:
+### Essential Programs :arrow_up_small:
 ```bash
 cd ~ && sudo apt update && \
 sudo add-apt-repository -y ppa:team-xbmc/ppa && \
@@ -74,7 +74,7 @@ sudo curl -1sLf 'https://dl.cloudsmith.io/public/balena/etcher/setup.deb.sh' | s
 ```bash
 sudo apt install -y kodi balena-etcher-electron qbittorrent lutris default-jre
 ```
-### Installing Programs as Standalone Important Packages
+### Installing Programs as Standalone Important Packages :arrow_double_down:
 `APT` will upgrade the standalone Debian packages, if possible.
 ```bash
 mkdir ~/.temp_deb && cd ~/.temp_deb && sudo apt update && \
@@ -144,9 +144,8 @@ wget -O "~/.AppImages/Nextcloud.AppImage" https://github.com/nextcloud/desktop/r
 ### [Patch for GIMP 2.10+ for Photoshop Users](https://github.com/Diolinux/PhotoGIMP) :art:
 ```bash
 # GIMP must installed as a Flatpak before this
-wget https://github.com/Diolinux/PhotoGIMP/releases/download/1.0/PhotoGIMP.by.Diolinux.v2020.for.Flatpak.zip && \
-unzip PhotoGIMP.by.Diolinux.v2020.for.Flatpak.zip -d /home/$USER  && \ 
-rm -rf PhotoGIMP.by.Diolinux.v2020.for.Flatpak.zip
+cd ~ && wget -O "PhotoGIMP.zip" -c https://github.com/Diolinux/PhotoGIMP/releases/download/1.1/PhotoGIMP.by.Diolinux.v2020.1.for.Flatpak.zip && \
+unzip PhotoGIMP.zip -d /home/$USER && rm -rf PhotoGIMP.zip
 ```
 
 ### [Photoshop CC v19 installer for Linux](https://github.com/Gictorbit/photoshopCClinux):wine_glass:
@@ -161,14 +160,14 @@ chmod +x PhotoshopSetup.sh  && \
 ----
 ## Shell and GNOME Customizations
 
-### Installing [Powerline for Bash](https://github.com/powerline/powerline) 
+### Installing [Powerline for Bash](https://github.com/powerline/powerline) :boom:
 ![Bash Preview](/assets/img/bash-preview.png)
 ```bash
 sudo apt install -y powerline fonts-powerline fonts-font-awesome && \
 echo -e "\nif [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then \n   powerline-daemon -q\n   POWERLINE_BASH_CONTINUATION=1\n   POWERLINE_BASH_SELECT=1\n   source /usr/share/powerline/bindings/bash/powerline.sh\n fi\n" >> $HOME/.bashrc
 ```
 
-### Installing Zsh and some plugins
+### Installing Zsh and some plugins :zap::zap:
 [Powerlevel10k for Zsh](https://github.com/romkatv/powerlevel10k), [Znap](https://github.com/marlonrichert/zsh-snap), [zsh-autocomplete](https://github.com/marlonrichert/zsh-autocomplete), [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 ![ZSH Preview](/assets/img/zsh-preview.png)
 ```bash
@@ -194,6 +193,16 @@ echo -e "\033[0;32m'Add 'zsh-autosuggestions' to Plugins in ~/.zshrc\033[0m"
 chsh -s $(which zsh)
 ```
 
+### Install `MesloLGS NF` (Nerd) font :black_nib:
+```bash
+mkdir -p ~/.local/share/fonts && cd ~/.local/share/fonts && \ 
+wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf && \ 
+wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf && \ 
+wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf && \ 
+wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf && \ 
+fc-cache -f -v
+```
+
 ### GNOME Tweaks and Extensions ⚡️
 ```bash
 sudo add-apt-repository -y universe && \
@@ -215,7 +224,7 @@ sudo usermod -aG docker ${USER} && \
 su - ${USER}
 ```
 
-### Deploying Essential Containers :ship:
+### Deploying Essential Containers :articulated_lorry:
 [Portainer](https://hub.docker.com/r/portainer/portainer-ce), [MongoDB_Server](https://hub.docker.com/_/mongo), [MySQL_Server](https://hub.docker.com/_/mysql) + [PhpMyAdmin](https://hub.docker.com/_/phpmyadmin), [Grafana](https://hub.docker.com/r/grafana/grafana) 
 
 ```bash
