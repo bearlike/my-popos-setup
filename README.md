@@ -6,20 +6,22 @@ I forget a lot of stuff. Plus I should stop flushing my PC after every minor inc
 
 ## Update System Preferences 💿🔧
 
-- **Settings** > **Accessibility** > Seeing > Pointer Control > **2** or **3** Points
-- **Settings** > **Accessibility** > Seeing > Large Text > Turn **ON**
-- **Settings** > **Accessibility** > Pointing & Clicking > Locate Pointer
-- **Settings** > **Privacy** > Screen Lock > Blank Screen Delay > **15 minutes** or **Never**
-- **Settings** > **Privacy** > Screen Lock > Blank Screen Delay > Lock Screen on Suspend
+- **Settings** > **Accessibility** > Seeing > Pointer Control > **2** or **3** Points.
+- **Settings** > **Accessibility** > Seeing > Large Text > Turn **ON**.
+- **Settings** > **Accessibility** > Pointing & Clicking > Locate Pointer.
+- **Settings** > **Privacy** > Screen Lock > Blank Screen Delay > **15 minutes** or **Never**.
+- **Settings** > **Privacy** > Screen Lock > Blank Screen Delay > Lock Screen on Suspend.
 - **Settings** > Set your DNS to your **Pi-Hole**.
-- **Settings** > **About** > Change **Hostname**
-- **GNOME Tweaks** > **General** > Turn OFF "**Suspend When laptop lid is closed**"
-- **GNOME Tweaks** > **General** > Turn ON "**Over Amplification**"
-- **GNOME Tweaks** > **Window Titlebars** > Titlebar Buttons > Turn **ON** Maximize & Minimize 
-- Change **`Root`** Password `sudo passwd root`
+- **Settings** > **About** > Change **Hostname**.
+- **GNOME Tweaks** > **General** > Turn OFF "**Suspend When laptop lid is closed**".
+- **GNOME Tweaks** > **General** > Turn ON "**Over Amplification**".
+- **GNOME Tweaks** > **Window Titlebars** > Titlebar Buttons > Turn **ON** Maximize & Minimize.
+- Change **`Root`** Password `sudo passwd root`,
 - Automatically mount **Network Drives** and setup **NextCloud**.
+- Install ICC profile [GA503QR_1002_AE0D1540_CMDEF.icm](https://github.com/bearlike/my-popos-setup/blob/check-and-patch/1/configs/color%20profiles/GA503QR_1002_AE0D1540_CMDEF.icm) for ASUS ROG Zephyrus G15 (2021).
+---
 
-### Change Appearance to my Liking :sunflower: 
+## Change Appearance to my Liking :sunflower: 
 [Wallpaper](https://thekrishna.in/my-popos-setup/configs/wallpaper/Abstract-Wallpaper.jpg), Cursor ([**We10XOS-cursors**](https://github.com/yeyushengfan258/We10XOS-cursors)), Icons ([**Papirus**](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)) etc.
 ```bash
 echo "Changing Wallapaper..." && \
@@ -38,18 +40,20 @@ sudo rm -r We10XOS-cursors && \
 echo "Done :)"
 ```
 ---
+## Installing Essential Programs 💯
 
 ### Upgrade Existing Packages ⬆️
 ```bash
 sudo apt update && sudo apt upgrade -y
 ```
 
-## Installing Essential Programs 💯
-
-### Super Essential Programs
+### Super Essential Programs :arrow_double_up:
+```bash
+sudo apt update && \
+sudo apt install -y -qq software-properties-common apt-transport-https ca-certificates wget curl gnupg git
+```
 ```bash
 cd ~ && sudo apt update && \
-sudo apt install -y -qq software-properties-common apt-transport-https ca-certificates wget curl gnupg git && \
 sudo wget -qO - https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add - && \
 sudo wget -qO - http://repo.vivaldi.com/stable/linux_signing_key.pub | sudo apt-key add - && \
 sudo add-apt-repository -y "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" && \
@@ -58,7 +62,8 @@ sudo add-apt-repository -y "deb [arch=amd64] http://repo.vivaldi.com/stable/deb/
 ```bash
 sudo apt install -y flatpak net-tools tilix mc tmux htop neofetch screen remmina grub-customizer vlc code vivaldi-stable 
 ```
-### Essential Programs
+
+### Essential Programs :arrow_double_down:
 ```bash
 cd ~ && sudo apt update && \
 sudo add-apt-repository -y ppa:team-xbmc/ppa && \
@@ -69,18 +74,18 @@ sudo curl -1sLf 'https://dl.cloudsmith.io/public/balena/etcher/setup.deb.sh' | s
 ```bash
 sudo apt install -y kodi balena-etcher-electron qbittorrent lutris default-jre
 ```
-
+### Installing Programs as Standalone Important Packages
 `APT` will upgrade the standalone Debian packages, if possible.
 ```bash
-cd ~ && sudo apt update && \
-wget -c https://github.com/peazip/PeaZip/releases/download/8.6.0/peazip_8.6.0.LINUX.GTK2-1_amd64.deb && \
-wget -c https://github.com/shiftkey/desktop/releases/download/release-3.0.0-linux2/GitHubDesktop-linux-3.0.0-linux2.deb && \
-wget https://zoom.us/client/latest/zoom_amd64.deb && \
-wget https://dl.discordapp.net/apps/linux/0.0.17/discord-0.0.17.deb && \
-wget https://downloads.mongodb.com/compass/mongodb-compass_1.26.1_amd64.deb && \
-sudo apt install -y ./zoom_amd64.deb ./peazip_8.6.0.LINUX.GTK2-1_amd64.deb ./discord-0.0.17.deb ./mongodb-compass_1.26.1_amd64.deb ./GitHubDesktop-linux-3.0.0-linux2.deb && \
+mkdir ~/.temp_deb && cd ~/.temp_deb && sudo apt update && \
+wget -O peazip.deb -c https://github.com/peazip/PeaZip/releases/download/8.6.0/peazip_8.6.0.LINUX.GTK2-1_amd64.deb && \
+wget -O github_desktop.deb -c https://github.com/shiftkey/desktop/releases/download/release-3.0.0-linux2/GitHubDesktop-linux-3.0.0-linux2.deb && \
+wget -O zoom.deb -c https://zoom.us/client/latest/zoom_amd64.deb && \
+wget -O discord.deb -c https://dl.discordapp.net/apps/linux/0.0.17/discord-0.0.17.deb && \
+wget -O mongodb_compass.deb -c https://downloads.mongodb.com/compass/mongodb-compass_1.26.1_amd64.deb && \
+sudo apt install -y ./peazip.deb ./github_desktop.deb ./zoom.deb ./discord.deb ./mongodb_compass.deb && \
 sudo apt upgrade -y && \
-sudo rm *.deb && sudo apt autoremove
+sudo rm -rf ~/.temp_deb && sudo apt autoremove
 ```
 
 ### Essential Python3 Packages 🐍
@@ -88,7 +93,7 @@ sudo rm *.deb && sudo apt autoremove
 ```bash
 sudo apt update && \
 sudo apt install -y python3 python-is-python3 python3-pip libopencv-dev python3-opencv && \
-pip3 install wheel flask numpy pymongo selenium opencv-python bs4 matplotlib scikit-learn Pillow pandas requests nltk bokeh pytest
+pip3 install wheel flask flask-restx numpy pymongo opencv-python bs4 matplotlib scikit-learn Pillow pandas requests nltk bokeh pytest
 ```
 
 ### Installing Go :triangular_flag_on_post:
@@ -100,7 +105,7 @@ sudo tar -C /usr/local -xvf go1.18.3.linux-amd64.tar.gz && \
 echo "export PATH=\$PATH:/usr/local/go/bin" >> ~/.profile && \ 
 source ~/.profile
 ```
-### Installing Virtualbox
+### Installing Virtualbox :diamond_shape_with_a_dot_inside:
 ```bash
 # Requires Console Intervention to Accept T&C
 sudo wget -qO - https://www.virtualbox.org/download/oracle_vbox_2016.asc | sudo apt-key add - && \
@@ -117,37 +122,6 @@ sudo apt install ttf-mscorefonts-installer && \
 sudo fc-cache -f -v
 ```
 
-### Installing [Powerline for Bash](https://github.com/powerline/powerline) 
-```bash
-sudo apt install -y powerline fonts-powerline fonts-font-awesome && \
-echo -e "\nif [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then \n   powerline-daemon -q\n   POWERLINE_BASH_CONTINUATION=1\n   POWERLINE_BASH_SELECT=1\n   source /usr/share/powerline/bindings/bash/powerline.sh\n fi\n" >> $HOME/.bashrc
-```
-
-### Installing Zsh and some plugins
-[Powerlevel10k for Zsh](https://github.com/romkatv/powerlevel10k), [Znap](https://github.com/marlonrichert/zsh-snap), [zsh-autocomplete](https://github.com/marlonrichert/zsh-autocomplete), [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions), [Zinit](https://github.com/zdharma/zinit)
-```bash
-# Powerlevel10k configuration wizard will require manual intervention
-sudo apt install -y zsh && \
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" && \
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k && \
-sed -i 's/robbyrussell/powerlevel10k\/powerlevel10k/' ~/.zshrc
-```
-```bash
-pip3 install psutil i3ipc powerline-mem-segment && \
-git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git && \
-source zsh-snap/install.zsh 
-```
-```bash
-echo -e "znap source marlonrichert/zsh-autocomplete" >> ~/.zshrc
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-echo -e "\033[0;32m'Add 'zsh-autosuggestions' to Plugins in ~/.zshrc\033[0m"
-```
-```bash
-# Change default shell to Zsh (If necessary)
-chsh -s $(which zsh)
-```
-
 ### Installing KVM + related tools (KVM >>> VirtualBox) ⚡️
 [VirtIO drivers for Windows Guest Machines](https://github.com/virtio-win/virtio-win-pkg-scripts/blob/master/README.md)
 ```bash
@@ -157,7 +131,7 @@ sudo adduser ${USER} kvm
 ```
 
 
-### Installing Essential Programs (AppImages and Flatpaks) ❤️
+### Installing AppImages and Flatpaks ❤️
 ```bash
 mkdir ~/.AppImages && \
 flatpak install --assumeyes --noninteractive --system https://flathub.org/repo/appstream/org.gimp.GIMP.flatpakref && \
@@ -182,6 +156,42 @@ git clone -q https://github.com/Gictorbit/photoshopCClinux.git && \
 cd photoshopCClinux/scripts && \
 chmod +x PhotoshopSetup.sh  && \
 ./PhotoshopSetup.sh 
+```
+
+----
+## Shell and GNOME Customizations
+
+### Installing [Powerline for Bash](https://github.com/powerline/powerline) 
+![Bash Preview](/assets/img/bash-preview.png)
+```bash
+sudo apt install -y powerline fonts-powerline fonts-font-awesome && \
+echo -e "\nif [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then \n   powerline-daemon -q\n   POWERLINE_BASH_CONTINUATION=1\n   POWERLINE_BASH_SELECT=1\n   source /usr/share/powerline/bindings/bash/powerline.sh\n fi\n" >> $HOME/.bashrc
+```
+
+### Installing Zsh and some plugins
+[Powerlevel10k for Zsh](https://github.com/romkatv/powerlevel10k), [Znap](https://github.com/marlonrichert/zsh-snap), [zsh-autocomplete](https://github.com/marlonrichert/zsh-autocomplete), [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
+![ZSH Preview](/assets/img/zsh-preview.png)
+```bash
+# Powerlevel10k configuration wizard will require manual intervention
+sudo apt install -y zsh && \
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" && \
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k && \
+sed -i 's/robbyrussell/powerlevel10k\/powerlevel10k/' ~/.zshrc
+```
+```bash
+pip3 install psutil i3ipc powerline-mem-segment && \
+git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git && \
+source zsh-snap/install.zsh 
+```
+```bash
+echo -e "znap source marlonrichert/zsh-autocomplete" >> ~/.zshrc
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+echo -e "\033[0;32m'Add 'zsh-autosuggestions' to Plugins in ~/.zshrc\033[0m"
+```
+```bash
+# Change default shell to Zsh (If necessary)
+chsh -s $(which zsh)
 ```
 
 ### GNOME Tweaks and Extensions ⚡️
@@ -219,10 +229,12 @@ docker run --name=grafana -d -p 3000:3000 grafana/grafana && \
 docker run --name mysql -e MYSQL_ROOT_PASSWORD="0000" -p 3306:3306 -d mysql && \
 docker run --name phpmyadmin -d --link mysql:db -p 8080:80 phpmyadmin/phpmyadmin
 ```
+----
 
-## Configurations
+## Configurations :nut_and_bolt:
 1. Use [bearlike/dotfiles](https://github.com/bearlike/dotfiles) to (re)configure machines. `.zshrc`, `.bashrc` etc.
 2. Clone [bearlike/scripts](https://github.com/bearlike/scripts) for a collection of automation scripts. 
 
+----
 ## Yesssss! 👊❤️
 "Have fun using your completely configured system, future me." - Old you.
